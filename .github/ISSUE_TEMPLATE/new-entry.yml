@@ -1,0 +1,40 @@
+name: Suggest a new entry
+description: >-
+  Suggest a tool for this list that you've heard of but don't personally use or
+  maintain. If you DO use or maintain it, open a PR instead -- see
+  CONTRIBUTING.md.
+title: "Suggest: "
+labels: [new-entry]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Tool name
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: URL (canonical source repo)
+      placeholder: https://github.com/org/tool
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does this belong here?
+      description: >-
+        What does it do, and how is it HEP-specific? See "What belongs here" in
+        README.md.
+    validations:
+      required: true
+  - type: checkboxes
+    id: first-hand
+    attributes:
+      label: First-hand rule
+      options:
+        - label: >-
+            I understand entries require someone who uses or maintains the tool
+            to open the PR -- this issue is a suggestion for someone else to
+            pick up, not a first-hand submission.
+          required: true
