@@ -1,0 +1,29 @@
+{
+  "projectName": "awesome-hep-agentic-analysis",
+  "projectOwner": "clariphy",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "kratsg",
+      "name": "Giordon Stark",
+      "avatar_url": "https://avatars.githubusercontent.com/u/761483?v=4",
+      "profile": "https://giordonstark.com/",
+      "contributions": [
+        "code",
+        "doc",
+        "ideas",
+        "projectManagement"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "contributorsSortAlphabetically": true,
+  "linkToUsage": true
+}

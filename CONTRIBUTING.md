@@ -75,3 +75,21 @@ Categories are declared in [`categories.yml`](categories.yml) independently of
 any entry, so a category can exist with zero entries. Propose a new one in the
 same PR as the first entry that needs it, and explain in the PR description why
 the existing categories don't fit.
+
+## Recognizing contributions
+
+This repo follows the [All Contributors](https://allcontributors.org)
+specification. A contribution doesn't have to be a datacard — reviewing PRs,
+fixing the generator, writing docs, and reporting issues all count. See the
+[emoji key](https://allcontributors.org/en/reference/emoji-key/) for the full
+list of contribution types.
+
+Add yourself in the same PR as your contribution:
+
+```bash
+pixi run contributors-add <your-github-username> <comma-separated-contribution-types>
+pixi run contributors-generate
+```
+
+Commit the resulting changes to `.all-contributorsrc` and `README.md` alongside
+your other changes.

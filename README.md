@@ -3,6 +3,10 @@
 A curated collection of agentic analysis toolings for the HEP community, compatible with
 Claude Code, Codex, Gemini CLI, Cursor, and more.
 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 ## Background
 
 This list grew out of the **Analysis Agentic Workflows** breakout session at the
@@ -120,6 +124,37 @@ Workshops, whitepapers, and community efforts that shaped or motivated this list
 See [CONTRIBUTING.md](CONTRIBUTING.md). Short version: one entry per PR, add a datacard
 under `entries/`, run `pixi run generate`, and only submit a tool you personally use or
 maintain.
+
+## Contributors
+
+Recognized per the [All Contributors](https://allcontributors.org) specification —
+every kind of contribution counts, not just entries. See
+[CONTRIBUTING.md](CONTRIBUTING.md#recognizing-contributions) for how to add yourself.
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://giordonstark.com/"><img src="https://avatars.githubusercontent.com/u/761483?v=4?s=100" width="100px;" alt="Giordon Stark"/><br /><sub><b>Giordon Stark</b></sub></a><br /><a href="https://github.com/clariphy/awesome-hep-agentic-analysis/commits?author=kratsg" title="Code">💻</a> <a href="https://github.com/clariphy/awesome-hep-agentic-analysis/commits?author=kratsg" title="Documentation">📖</a> <a href="#ideas-kratsg" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-kratsg" title="Project Management">📆</a></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td align="center" size="13px" colspan="7">
+        <img src="https://raw.githubusercontent.com/all-contributors/all-contributors-cli/1b8533af435da9854653492b1327a23a4dbd0a10/assets/logo-small.svg">
+          <a href="https://all-contributors.js.org/docs/en/bot/usage">Add your contributions</a>
+        </img>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## License
 

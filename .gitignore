@@ -6,3 +6,6 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+
+# Node (all-contributors-cli)
+node_modules/
