@@ -123,4 +123,4 @@ maintain.
 
 ## License
 
-[BSD 3-Clause](LICENSE).
+[CC BY 4.0](LICENSE).
