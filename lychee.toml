@@ -1,0 +1,9 @@
+# Configuration for lychee (https://github.com/lycheeverse/lychee), run via `pixi run links`.
+
+# gitlab.cern.ch requires CERN SSO and returns a 302 redirect to the login page
+# for unauthenticated requests (including CI), so it can never be verified here.
+exclude = [
+  "^https://gitlab\\.cern\\.ch/",
+]
+
+accept = [200, 429]
