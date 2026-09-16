@@ -75,7 +75,6 @@ Model Context Protocol servers that expose HEP data, compute, or software infras
 - [AF JupyterLab MCP](https://github.com/maniaclab/af-jupyterlab-mcp) - MCP server for creating, inspecting, and deleting per-user JupyterLab servers on an analysis facility
 - [AF MCP Platform](https://github.com/maniaclab/af-mcp-platform) - Credential-brokered MCP gateway aggregating Rucio, PanDA, AMI, GitLab, Jupyter, and HTCondor behind one URL
 - [AMI MCP](https://github.com/kratsg/ami-mcp) - MCP server wrapping ATLAS AMI for dataset metadata lookups
-- [ATLAS OpenSearch MCP](https://gitlab.cern.ch/atlas-search/mcp) - MCP server for querying the ATLAS collaboration's OpenSearch-backed search index
 - [Bamboo MCP](https://github.com/BNLNPPS/bamboo-mcp) - Plugin-based MCP runtime for AI-assisted PanDA/ATLAS, ePIC/EIC, and CGSim workflows
 - [HTCondor MCP](https://github.com/bbockelm/golang-htcondor) - Go HTCondor client library with a bundled MCP server for submitting and querying batch jobs
 - [Rucio MCP](https://github.com/kratsg/rucio-mcp) - MCP server wrapping the Rucio client for dataset discovery and replica management
