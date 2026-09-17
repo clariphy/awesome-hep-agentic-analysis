@@ -14,9 +14,7 @@ HEP analysis starting from a short physics prompt. The specification splits into
 a **methodology** (the analysis workflow phases, with tiered multi-agent review
 at every stage), **general agent behavior** (strict input/output contracts per
 subagent role and an experiment log for human oversight), and the orchestration
-that ties them together. Introduced in the CLARIPHY tutorial track (see
-[the workshop entry](https://indico.global/event/18639/) in this list) and
-referenced by name in the Analysis Agentic Workflows breakout.
+that ties them together.
 
 Useful when: you want a reference architecture for orchestrating specialized
 subagents (strategy, data exploration, statistics, writing) through a full

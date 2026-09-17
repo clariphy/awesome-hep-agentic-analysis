@@ -15,9 +15,7 @@ JupyterLab, XCache, Rucio, ServiceX, Coffea Casa, Triton, and the AF MCP
 Platform), `atlas` (subagents for analysis
 architecture/coding/data-exploration/statistics, plus ~40 skills spanning pyhf,
 cabinetry, TRExFitter, coffea, awkward, uproot, and ATLAS software setup), and
-`hep-python-tools` (generic HEP Python tooling). Generated from per-skill/agent
-datacards via its own `pixi run sync-skills` — the same pattern this repo's
-generator follows.
+`hep-python-tools` (generic HEP Python tooling).
 
 The BNL/UChicago tags cover only `af-bnl`/`af-uchicago`: those two plugins are
 useless without an account at that specific facility. `atlas` and

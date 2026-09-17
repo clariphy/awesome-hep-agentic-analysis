@@ -13,7 +13,7 @@ AF JupyterLab MCP | https://github.com/maniaclab/af-jupyterlab-mcp | MCP server 
 AF MCP Platform | https://github.com/maniaclab/af-mcp-platform | Credential-brokered MCP aggregator/gateway for any MCP server to hook into | generic | entries/af-mcp-platform.md
 AMI MCP | https://github.com/kratsg/ami-mcp | MCP server wrapping ATLAS AMI for dataset metadata lookups | ATLAS | entries/ami-mcp.md
 archi | https://github.com/archi-physics/archi | Retrieval-augmented chat, ticketing, and course-support assistant framework for research teams | generic | entries/archi.md
-ATLAS OpenSearch MCP | https://gitlab.cern.ch/atlas-search/mcp | MCP server for querying the ATLAS collaboration's OpenSearch-backed search index | ATLAS | entries/atlas-opensearch-mcp.md
+ATLAS OpenSearch MCP | https://gitlab.cern.ch/atlas-search/mcp | MCP server for federated search across ATLAS's collaboration documentation | ATLAS | entries/atlas-opensearch-mcp.md
 Bamboo MCP | https://github.com/BNLNPPS/bamboo-mcp | Plugin-based MCP runtime for AI-assisted PanDA/ATLAS, ePIC/EIC, and CGSim workflows | ATLAS, EIC | entries/bamboo-mcp.md
 Building an AI-native Research Ecosystem for Experimental Particle Physics | https://arxiv.org/abs/2602.17582 | 459-author community whitepaper laying out grand challenges and infrastructure for AI-native particle physics | generic | entries/ai-native-hep-whitepaper.md
 CLARIPHY AI Collaboration Meeting | https://indico.global/event/18639/ | Workshop that formed the working group producing this list, including the Agentic Workflows session | generic | entries/clariphy-workshop.md
@@ -21,7 +21,7 @@ HTCondor MCP | https://github.com/bbockelm/golang-htcondor | Go HTCondor client 
 IRIS-HEP Marketplace | https://github.com/iris-hep/marketplace | Claude Code plugin marketplace with skills for awkward, hist, ServiceX, and building HEP analyses | ATLAS | entries/iris-hep-marketplace.md
 JFC (Just Furnish Context) | https://github.com/jfc-mit/jfc | Multi-agent framework that plans, executes, and documents a full HEP analysis from a physics prompt | generic | entries/jfc.md
 Rucio MCP | https://github.com/kratsg/rucio-mcp | MCP server wrapping the Rucio client for dataset discovery and replica management | generic | entries/rucio-mcp.md
-Rucio MCP (UChicago-hosted) | https://rucio-mcp.af.uchicago.edu/ | Live hosted Rucio MCP endpoint for ATLAS, CMS, DUNE, and ESCAPE | hosted, ATLAS, CMS, DUNE, ESCAPE | entries/uchicago-rucio-mcp.md
+Rucio MCP (UChicago-hosted) | https://rucio-mcp.af.uchicago.edu/ | Live hosted Rucio MCP endpoint - connect directly, nothing to deploy | hosted, ATLAS, CMS, DUNE, ESCAPE | entries/uchicago-rucio-mcp.md
 ServiceX MCP | https://github.com/maniaclab/servicex-mcp | MCP server wrapping the ServiceX client for on-demand ATLAS/CMS data delivery | ATLAS, CMS | entries/servicex-mcp.md
 UChicago AF MCP Portal | https://mcp-portal.af.uchicago.edu/ | Live UChicago AF MCP portal - connect directly, nothing to deploy | hosted, ATLAS, UChicago | entries/uchicago-af-mcp-portal.md
 USATLAS Marketplace | https://github.com/usatlas/marketplace | Claude Code plugin marketplace covering ATLAS analysis facilities and the full ATLAS software stack | ATLAS, BNL, UChicago | entries/usatlas-marketplace.md
