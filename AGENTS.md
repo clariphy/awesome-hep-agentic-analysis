@@ -52,3 +52,8 @@ Follow this protocol rather than answering from the README table alone:
 - Escalate to the human rather than guessing when a task requires first-hand
   knowledge of a tool you can't verify (e.g. writing a datacard's "useful when /
   not useful when" guidance for something neither of you has used).
+- Keep datacard bodies timeless (see
+  [CONTRIBUTING.md](CONTRIBUTING.md#adding-an-entry)): don't write a confident
+  claim about what a tool currently can't do, or about another party's plans or
+  status. Those age into misinformation the moment the tool changes or the plan
+  does, and nobody will circle back to fix the card.

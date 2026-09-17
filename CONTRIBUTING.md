@@ -62,6 +62,16 @@ The PR template asks you to confirm each of these explicitly.
    install/auth/version details the linked repo already documents; those go
    stale here and don't there.
 
+   Keep the body timeless: describe what the tool _is_ and _who it's for_, not
+   an exhaustive, point-in-time claim about what it currently can or can't do.
+   "Only manages X, not Y" or "doesn't support Z yet" reads like a permanent
+   limitation but is really a snapshot of today's code — the tool evolves, the
+   card doesn't get updated to match, and now it's actively misleading. If a
+   limitation genuinely matters, phrase it as what the tool is _for_ ("this
+   covers scheduling, not accounting") rather than what it _lacks_. Same goes
+   for another party's plans or status (e.g. "X is evaluating this") — link to
+   their own material if that context matters, don't restate it here as fact.
+
 3. Run `pixi run generate` and commit the updated `README.md` and `llms.txt`
    alongside your datacard.
 4. Run `pixi run check` before opening the PR. CI runs the same thing.
