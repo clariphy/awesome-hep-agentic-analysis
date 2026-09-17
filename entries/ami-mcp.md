@@ -3,6 +3,7 @@ name: AMI MCP
 url: https://github.com/kratsg/ami-mcp
 description: MCP server wrapping ATLAS AMI for dataset metadata lookups
 categories: [mcp-servers]
+experiments: [ATLAS]
 ---
 
 Wraps ATLAS AMI (ATLAS Metadata Interface) as MCP tools, so an agent can query

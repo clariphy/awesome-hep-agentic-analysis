@@ -13,8 +13,15 @@ management, file transfer, sandbox handling, pool metrics) that also ships
 agents over stdio. The same repo also ships a standalone REST API server
 (`htcondor-api`) for non-MCP clients.
 
-Useful when: an agent needs to submit, monitor, or manage HTCondor batch jobs
-directly.
+Not tagged to any experiment or facility — HTCondor itself is generic batch
+scheduling. It's aimed at whoever runs the pool, though, not a typical end user:
+standing it up means deploying `htcondor-mcp` against your own schedd, which is
+a sysadmin task.
 
-Not useful when: you need the Python HTCondor bindings — this is an independent
-Go implementation, not a wrapper around them.
+Useful when: you're a facility operator who wants an agent to submit, monitor,
+or manage HTCondor batch jobs against your own pool.
+
+Not useful when: you're an end user hoping to point this at someone else's
+HTCondor pool without help — there's nothing to connect to until a sysadmin
+deploys it. Also not useful if you need the Python HTCondor bindings — this is
+an independent Go implementation, not a wrapper around them.

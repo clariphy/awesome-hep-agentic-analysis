@@ -2,7 +2,13 @@
 
 import pytest
 
-from scripts.loader import DatacardError, load_categories, load_entries
+from scripts.loader import (
+    DatacardError,
+    load_categories,
+    load_entries,
+    load_experiments,
+    load_facilities,
+)
 
 CATEGORIES_YAML = """
 categories:
@@ -12,6 +18,18 @@ categories:
   - id: agent-frameworks
     title: Agent Frameworks
     blurb: Frameworks.
+"""
+
+EXPERIMENTS_YAML = """
+experiments:
+  - name: ATLAS
+  - name: CMS
+"""
+
+FACILITIES_YAML = """
+facilities:
+  - name: UChicago
+  - name: BNL
 """
 
 VALID_CARD = """---
@@ -86,3 +104,59 @@ def test_load_entries_rejects_duplicate_url(tmp_path):
     categories = load_categories(categories_path)
     with pytest.raises(DatacardError, match="duplicate url"):
         load_entries(entries_dir, categories)
+
+
+def test_load_experiments_parses_ordered_names(tmp_path):
+    experiments_path = _write(tmp_path / "experiments.yml", EXPERIMENTS_YAML)
+    assert load_experiments(experiments_path) == ["ATLAS", "CMS"]
+
+
+def test_load_facilities_parses_ordered_names(tmp_path):
+    facilities_path = _write(tmp_path / "facilities.yml", FACILITIES_YAML)
+    assert load_facilities(facilities_path) == ["UChicago", "BNL"]
+
+
+def test_load_experiments_rejects_duplicate_names(tmp_path):
+    experiments_path = _write(
+        tmp_path / "experiments.yml", "experiments:\n  - name: ATLAS\n  - name: ATLAS\n"
+    )
+    with pytest.raises(DatacardError, match="duplicate"):
+        load_experiments(experiments_path)
+
+
+def test_load_entries_rejects_unknown_experiment(tmp_path):
+    categories_path = _write(tmp_path / "categories.yml", CATEGORIES_YAML)
+    entries_dir = tmp_path / "entries"
+    entries_dir.mkdir()
+    bad_card = VALID_CARD.replace("categories: [mcp-servers]", "categories: [mcp-servers]\nexperiments: [DUNE]")
+    _write(entries_dir / "rucio-mcp.md", bad_card)
+
+    categories = load_categories(categories_path)
+    with pytest.raises(DatacardError, match="DUNE"):
+        load_entries(entries_dir, categories, experiments=["ATLAS", "CMS"])
+
+
+def test_load_entries_rejects_unknown_facility(tmp_path):
+    categories_path = _write(tmp_path / "categories.yml", CATEGORIES_YAML)
+    entries_dir = tmp_path / "entries"
+    entries_dir.mkdir()
+    bad_card = VALID_CARD.replace("categories: [mcp-servers]", "categories: [mcp-servers]\nfacilities: [Purdue]")
+    _write(entries_dir / "rucio-mcp.md", bad_card)
+
+    categories = load_categories(categories_path)
+    with pytest.raises(DatacardError, match="Purdue"):
+        load_entries(entries_dir, categories, facilities=["UChicago", "BNL"])
+
+
+def test_load_entries_skips_scope_check_when_registry_not_given(tmp_path):
+    # No experiments=/facilities= passed -- callers that don't care about scope (e.g.
+    # existing tests written before this feature) shouldn't have to opt in.
+    categories_path = _write(tmp_path / "categories.yml", CATEGORIES_YAML)
+    entries_dir = tmp_path / "entries"
+    entries_dir.mkdir()
+    bad_card = VALID_CARD.replace("categories: [mcp-servers]", "categories: [mcp-servers]\nexperiments: [MADE-UP]")
+    _write(entries_dir / "rucio-mcp.md", bad_card)
+
+    categories = load_categories(categories_path)
+    entries = load_entries(entries_dir, categories)
+    assert entries[0].experiments == ["MADE-UP"]

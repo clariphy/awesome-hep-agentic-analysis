@@ -38,10 +38,17 @@ An entry must be:
 
 Each entry below is a one-line summary. The full detail — what a tool is actually good
 for, and where it doesn't apply — lives in its datacard under
-[`entries/`](entries/), not in this table. [`llms.txt`](llms.txt) is a flat,
-agent-readable index of every entry with a link straight to its datacard.
-[AGENTS.md](AGENTS.md) spells out the retrieval protocol: shortlist from the table
-below, then confirm the match by reading the datacard before recommending anything.
+[`entries/`](entries/), not in this table. A `(ATLAS · UChicago)` suffix means the entry
+is only actually usable by someone in that experiment and/or at that facility — no
+suffix means generic, usable by anyone (see
+[CONTRIBUTING.md](CONTRIBUTING.md#scoping-an-entry-experiments-and-facilities) for how
+that's decided). A leading `hosted` in that suffix means the link is a live, connectable
+endpoint rather than source code to deploy yourself (see
+[CONTRIBUTING.md](CONTRIBUTING.md#code-vs-a-live-service-hosted)).
+[`llms.txt`](llms.txt) is a flat, agent-readable index of every entry with a link
+straight to its datacard. [AGENTS.md](AGENTS.md) spells out the retrieval protocol:
+shortlist from the table below, check its scope and hosted status, then confirm the
+match by reading the datacard before recommending anything.
 
 <!-- UPDATE:START -->
 - [Agent Frameworks & Orchestration](#agent-frameworks--orchestration)
@@ -64,21 +71,24 @@ Frameworks that coordinate one or more LLM agents through a HEP analysis workflo
 
 Collections of Claude Code (or equivalent) plugins, skills, and agents, published as an installable marketplace.
 
-- [IRIS-HEP Marketplace](https://github.com/iris-hep/marketplace) - Claude Code plugin marketplace with skills for awkward, hist, ServiceX, and building HEP analyses
-- [USATLAS Marketplace](https://github.com/usatlas/marketplace) - Claude Code plugin marketplace covering ATLAS analysis facilities and the full ATLAS software stack
+- [IRIS-HEP Marketplace](https://github.com/iris-hep/marketplace) - Claude Code plugin marketplace with skills for awkward, hist, ServiceX, and building HEP analyses (ATLAS)
+- [USATLAS Marketplace](https://github.com/usatlas/marketplace) - Claude Code plugin marketplace covering ATLAS analysis facilities and the full ATLAS software stack (ATLAS · BNL · UChicago)
 
 ### MCP Servers
 
 Model Context Protocol servers that expose HEP data, compute, or software infrastructure to any MCP-compatible agent.
 
-- [AF Filesystem MCP](https://github.com/maniaclab/af-filesystem-mcp) - MCP server giving browse and read access to a user's own analysis-facility home and data directories
-- [AF JupyterLab MCP](https://github.com/maniaclab/af-jupyterlab-mcp) - MCP server for creating, inspecting, and deleting per-user JupyterLab servers on an analysis facility
+- [AF Filesystem MCP](https://github.com/maniaclab/af-filesystem-mcp) - MCP server giving browse and read access to a user's own analysis-facility home and data directories (ATLAS · UChicago)
+- [AF JupyterLab MCP](https://github.com/maniaclab/af-jupyterlab-mcp) - MCP server for creating, inspecting, and deleting per-user JupyterLab servers on an analysis facility (ATLAS · UChicago)
 - [AF MCP Platform](https://github.com/maniaclab/af-mcp-platform) - Credential-brokered MCP gateway aggregating Rucio, PanDA, AMI, GitLab, Jupyter, and HTCondor behind one URL
-- [AMI MCP](https://github.com/kratsg/ami-mcp) - MCP server wrapping ATLAS AMI for dataset metadata lookups
-- [Bamboo MCP](https://github.com/BNLNPPS/bamboo-mcp) - Plugin-based MCP runtime for AI-assisted PanDA/ATLAS, ePIC/EIC, and CGSim workflows
+- [AMI MCP](https://github.com/kratsg/ami-mcp) - MCP server wrapping ATLAS AMI for dataset metadata lookups (ATLAS)
+- [ATLAS OpenSearch MCP](https://gitlab.cern.ch/atlas-search/mcp) - MCP server for querying the ATLAS collaboration's OpenSearch-backed search index (ATLAS)
+- [Bamboo MCP](https://github.com/BNLNPPS/bamboo-mcp) - Plugin-based MCP runtime for AI-assisted PanDA/ATLAS, ePIC/EIC, and CGSim workflows (ATLAS · EIC)
 - [HTCondor MCP](https://github.com/bbockelm/golang-htcondor) - Go HTCondor client library with a bundled MCP server for submitting and querying batch jobs
 - [Rucio MCP](https://github.com/kratsg/rucio-mcp) - MCP server wrapping the Rucio client for dataset discovery and replica management
-- [ServiceX MCP](https://github.com/maniaclab/servicex-mcp) - MCP server wrapping the ServiceX client for on-demand ATLAS/CMS data delivery
+- [Rucio MCP (UChicago-hosted)](https://rucio-mcp.af.uchicago.edu/) - Live hosted Rucio MCP endpoint for ATLAS, CMS, DUNE, and ESCAPE (hosted · ATLAS · CMS · DUNE · ESCAPE)
+- [ServiceX MCP](https://github.com/maniaclab/servicex-mcp) - MCP server wrapping the ServiceX client for on-demand ATLAS/CMS data delivery (ATLAS · CMS)
+- [UChicago AF MCP Portal](https://mcp-portal.af.uchicago.edu/) - Live UChicago AF MCP portal - connect directly, nothing to deploy (hosted · ATLAS · UChicago)
 
 ### Standalone Skills & Plugins
 

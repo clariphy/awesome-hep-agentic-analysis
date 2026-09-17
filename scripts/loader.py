@@ -1,4 +1,5 @@
-"""Loading and cross-validating datacards (entries/*.md) against categories.yml.
+"""Loading and cross-validating datacards (entries/*.md) against categories.yml,
+experiments.yml, and facilities.yml.
 
 Both scripts/generate.py and scripts/validate.py need the same load-and-check logic, so
 it lives here once rather than being duplicated between the two entry points.
@@ -10,19 +11,38 @@ from pathlib import Path
 
 import yaml
 
-from scripts.models import Category, Entry
+from scripts.models import Category, Entry, ScopeTagDef
 
 _FRONTMATTER_FENCE = "---"
 
 
 class DatacardError(ValueError):
-    """Raised when categories.yml or an entries/*.md file fails to parse or cross-validate."""
+    """Raised when a registry file or an entries/*.md file fails to parse or cross-validate."""
 
 
 def load_categories(path: Path) -> list[Category]:
     """Load the ordered category taxonomy from categories.yml."""
     data = yaml.safe_load(path.read_text(encoding="utf-8"))
     return [Category.model_validate(raw) for raw in data["categories"]]
+
+
+def _load_scope_registry(path: Path, key: str) -> list[str]:
+    """Load the canonical name list from experiments.yml or facilities.yml."""
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    names = [ScopeTagDef.model_validate(raw).name for raw in data[key]]
+    if len(names) != len(set(names)):
+        raise DatacardError(f"{path}: duplicate names in the registry")
+    return names
+
+
+def load_experiments(path: Path) -> list[str]:
+    """Load the canonical experiment name list from experiments.yml."""
+    return _load_scope_registry(path, "experiments")
+
+
+def load_facilities(path: Path) -> list[str]:
+    """Load the canonical facility name list from facilities.yml."""
+    return _load_scope_registry(path, "facilities")
 
 
 def _split_frontmatter(text: str, source: Path) -> tuple[dict, str]:
@@ -47,16 +67,40 @@ def load_entry(path: Path) -> Entry:
         raise DatacardError(f"{path}: {exc}") from exc
 
 
-def load_entries(directory: Path, categories: list[Category]) -> list[Entry]:
-    """Load every entries/*.md datacard, sorted by filename, cross-validated against categories."""
-    known_ids = {category.id for category in categories}
+def _check_all_known(
+    tags: list[str], known: set[str], singular: str, plural: str, path: Path, registry_file: str
+) -> None:
+    unknown = [tag for tag in tags if tag not in known]
+    if unknown:
+        noun = singular if len(unknown) == 1 else plural
+        raise DatacardError(f"{path}: unknown {noun} {unknown!r} (not declared in {registry_file})")
+
+
+def load_entries(
+    directory: Path,
+    categories: list[Category],
+    experiments: list[str] | None = None,
+    facilities: list[str] | None = None,
+) -> list[Entry]:
+    """Load every entries/*.md datacard, sorted by filename, cross-validated against categories.
+
+    `experiments`/`facilities` are the canonical name lists from experiments.yml/
+    facilities.yml. Passing None (the default) skips that particular check -- callers
+    that don't care about scope tags don't have to load registries they won't use.
+    """
+    known_category_ids = {category.id for category in categories}
     paths = sorted(directory.glob("*.md"))
     entries = [load_entry(path) for path in paths]
     for entry, path in zip(entries, paths):
-        unknown = [c for c in entry.categories if c not in known_ids]
-        if unknown:
-            noun = "category" if len(unknown) == 1 else "categories"
-            raise DatacardError(f"{path}: unknown {noun} {unknown!r} (not declared in categories.yml)")
+        _check_all_known(entry.categories, known_category_ids, "category", "categories", path, "categories.yml")
+        if experiments is not None:
+            _check_all_known(
+                entry.experiments, set(experiments), "experiment", "experiments", path, "experiments.yml"
+            )
+        if facilities is not None:
+            _check_all_known(
+                entry.facilities, set(facilities), "facility", "facilities", path, "facilities.yml"
+            )
     _check_no_duplicate_urls(entries)
     return entries
 

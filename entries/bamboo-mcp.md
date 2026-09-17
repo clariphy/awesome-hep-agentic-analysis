@@ -5,6 +5,7 @@ description:
   Plugin-based MCP runtime for AI-assisted PanDA/ATLAS, ePIC/EIC, and CGSim
   workflows
 categories: [mcp-servers]
+experiments: [ATLAS, EIC]
 ---
 
 A lightweight MCP-based runtime with a plugin architecture for AI-assisted

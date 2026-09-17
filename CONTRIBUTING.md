@@ -44,6 +44,9 @@ The PR template asks you to confirm each of these explicitly.
    # don't maintain a second URL that can drift out of sync.
    description: One line, no trailing period, under ~150 characters
    categories: [some-category-id]
+   experiments: [ATLAS] # optional -- see "Scoping an entry" below
+   facilities: [UChicago] # optional -- see "Scoping an entry" below
+   hosted: true # optional, default false -- see "Code vs. a live service" below
    ---
 
    A short paragraph on what the tool actually does.
@@ -62,6 +65,60 @@ The PR template asks you to confirm each of these explicitly.
 3. Run `pixi run generate` and commit the updated `README.md` and `llms.txt`
    alongside your datacard.
 4. Run `pixi run check` before opening the PR. CI runs the same thing.
+
+### Scoping an entry: `experiments` and `facilities`
+
+Leave both fields off entirely when a tool is generic: usable by anyone,
+regardless of experiment or facility. Add one or both when the tool, **as it
+actually exists and is usable today**, requires being a member of that
+experiment or having an account at that facility — not when the underlying code
+merely _could_ be deployed elsewhere.
+
+The test is: can someone outside that experiment/facility click the link and
+have it running? If not, it's scoped. Two examples that came up designing this:
+
+- **AF Filesystem MCP** is generic Helm config that any facility could deploy —
+  but the only place it's actually running is UChicago, so it's tagged
+  `experiments: [ATLAS]`, `facilities: [UChicago]`. If BNL stands up its own
+  deployment, add `BNL` to its `facilities` list rather than creating a second
+  entry.
+- **Rucio MCP** is untagged. Rucio itself spans many experiments, and which
+  instance you reach depends on how the MCP server is configured, not on the
+  tool itself — configuration isn't the same thing as scope.
+
+Both fields reference canonical names declared in
+[`experiments.yml`](experiments.yml) and [`facilities.yml`](facilities.yml) —
+`pixi run validate` rejects a name not declared there. Add a new name to the
+relevant file in the same PR as the first entry that needs it, matching the
+capitalization already used elsewhere (e.g. `UChicago`, not `uchicago`).
+
+### Code vs. a live service: `hosted`
+
+This is a second, independent axis from scope, and answers a different question:
+is `url` something you'd have to build/deploy/run yourself, or can you connect
+to it right now?
+
+- **`hosted: false`** (the default): `url` is a source repository. The reader
+  still has to install, deploy, or run this themselves — or their facility does,
+  on their behalf.
+- **`hosted: true`**: `url` is a live, already-running endpoint. Nothing to
+  install; you point an MCP client at it and go.
+
+The same underlying software can appear as both, in separate entries: **AF MCP
+Platform** (`hosted: false`) is the deployable gateway code, generic and
+untagged; **UChicago AF MCP Portal** (`hosted: true`, `experiments: [ATLAS]`,
+`facilities: [UChicago]`) is UChicago's actual running instance of it. Don't
+collapse these into one card — a reader deciding "can I use this right now?"
+needs a different answer than a reader deciding "could I deploy this?", and a
+single set of frontmatter can't honestly answer both.
+
+A hosted entry's scope tags describe who the _running service_ is configured
+for, which doesn't have to match the software's own generality: **Rucio MCP
+(UChicago-hosted)** runs the same generic, untagged
+[rucio-mcp](https://github.com/kratsg/rucio-mcp) code, but is tagged
+`experiments: [ATLAS, CMS, DUNE, ESCAPE]` because that's what this particular
+deployment is configured to serve — with no `facilities` tag, since (unlike the
+AF-branded servers) reaching it doesn't require a UChicago account.
 
 ## Editing or removing an entry
 

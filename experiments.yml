@@ -1,0 +1,9 @@
+# Canonical experiment names, so entries/*.md stays consistent (e.g. "ATLAS", not "atlas"
+# or "Atlas"). Referenced by the `experiments` frontmatter field. Add a name here in the
+# same PR as the first entry that needs it.
+experiments:
+  - name: ATLAS
+  - name: CMS
+  - name: DUNE
+  - name: EIC
+  - name: ESCAPE

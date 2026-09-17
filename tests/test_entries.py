@@ -1,15 +1,20 @@
-"""End-to-end test: parse the *real* entries/ and categories.yml, no mocks."""
+"""End-to-end test: parse the *real* entries/, categories.yml, experiments.yml, and
+facilities.yml, no mocks."""
 
 from pathlib import Path
 
-from scripts.loader import load_categories, load_entries
+from scripts.loader import load_categories, load_entries, load_experiments, load_facilities
 
 ROOT = Path(__file__).resolve().parent.parent
 
 
 def test_real_entries_all_validate_and_cross_reference_cleanly():
     categories = load_categories(ROOT / "categories.yml")
-    entries = load_entries(ROOT / "entries", categories)
+    experiments = load_experiments(ROOT / "experiments.yml")
+    facilities = load_facilities(ROOT / "facilities.yml")
+    # load_entries itself raises DatacardError on any unknown category/experiment/
+    # facility -- reaching this line at all is part of what's being asserted.
+    entries = load_entries(ROOT / "entries", categories, experiments, facilities)
 
     assert len(entries) > 0
 

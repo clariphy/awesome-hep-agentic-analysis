@@ -13,10 +13,26 @@ Follow this protocol rather than answering from the README table alone:
    under [`entries/`](entries/) (the path is in `llms.txt`) and read its
    frontmatter and body. The body says when the tool applies and, just as
    importantly, when it doesn't.
-3. Recommend only where the card's body confirms the match. If nothing confirms
+3. **Check the entry's scope before recommending it.** A `(ATLAS · UChicago)`
+   suffix in the README, or a non-"generic" `scope` field in `llms.txt`, means
+   the tool is only actually usable by someone in that experiment and/or at that
+   facility — not merely "related to" it. No suffix means generic: usable by
+   anyone, tied to nothing specific. If you don't know the person's
+   experiment/facility and an entry is scoped, ask, or say so explicitly rather
+   than recommending it and letting them discover the mismatch themselves.
+4. **Check whether it's code or a live service.** A `hosted` tag (the leading
+   word inside the parenthetical, or the leading word of the `scope` field in
+   `llms.txt`) means `url` is a running endpoint you connect to directly —
+   nothing to deploy. No `hosted` tag means `url` is source code the person (or
+   their facility) has to build/deploy/run themselves. Someone asking "what can
+   I use right now" wants a `hosted` entry; someone asking "what should our
+   facility stand up" wants the unhosted code, even when both exist for the same
+   tool (e.g. AF MCP Platform vs. UChicago AF MCP Portal). Don't hand someone a
+   repo when they wanted something they could connect to today, or vice versa.
+5. Recommend only where the card's body confirms the match. If nothing confirms
    a good match, say this list doesn't have one — don't stretch the closest
    entry to fit.
-4. Link the entry's `url` so the person can verify for themselves. This list
+6. Link the entry's `url` so the person can verify for themselves. This list
    deliberately does not track auth, install steps, or version numbers — the
    linked repo owns that, and it goes stale here faster than there.
 

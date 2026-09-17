@@ -12,13 +12,15 @@ import argparse
 import sys
 from pathlib import Path
 
-from scripts.loader import load_categories, load_entries
+from scripts.loader import load_categories, load_entries, load_experiments, load_facilities
 from scripts.models import Category, Entry
 
 ROOT = Path(__file__).resolve().parent.parent
 README = ROOT / "README.md"
 LLMS_TXT = ROOT / "llms.txt"
 CATEGORIES_YAML = ROOT / "categories.yml"
+EXPERIMENTS_YAML = ROOT / "experiments.yml"
+FACILITIES_YAML = ROOT / "facilities.yml"
 ENTRIES_DIR = ROOT / "entries"
 
 README_START_MARKER = "<!-- UPDATE:START -->"
@@ -28,9 +30,12 @@ _LLMS_TXT_HEADER = """\
 # awesome-hep-agentic-analysis
 
 > Flat index of every entry in this list, for agents that want to discover it in one
-> fetch. Each line is `name | url | description | card path`. Read the linked card
-> (entries/<slug>.md) before recommending an entry -- the one-liner here is a shortlist,
-> not a verdict. See AGENTS.md for the full retrieval protocol.
+> fetch. Each line is `name | url | description | scope | card path`. `scope` is
+> "generic" (usable by anyone) or a comma-separated list of the experiments and/or
+> facilities the entry is specific to -- do not recommend a scoped entry to someone
+> outside that scope. Read the linked card (entries/<slug>.md) before recommending an
+> entry -- the one-liner here is a shortlist, not a verdict. See AGENTS.md for the full
+> retrieval protocol.
 """
 
 
@@ -42,12 +47,28 @@ def _entries_by_category(entries: list[Entry], category: Category) -> list[Entry
 _EMPTY_CATEGORY_INVITE = "_No entries yet. [Contributions welcome!](CONTRIBUTING.md)_"
 
 
+def _scope_tags(entry: Entry) -> list[str]:
+    """The entry's tags: "hosted" first if it's a live connectable endpoint (see
+    Entry.hosted), then experiments, then facilities. Empty means generic, unhosted
+    code -- the common case.
+    """
+    return [*(["hosted"] if entry.hosted else []), *entry.experiments, *entry.facilities]
+
+
+def _readme_scope_suffix(entry: Entry) -> str:
+    """" (ATLAS · UChicago)" for a scoped entry, or "" for a generic one."""
+    tags = _scope_tags(entry)
+    return f" ({' · '.join(tags)})" if tags else ""
+
+
 def render_readme_block(entries: list[Entry], categories: list[Category]) -> str:
     """Render the per-category sections that live between the README markers.
 
     Categories are emitted in the order given (the declared order in categories.yml). A
     category with no matching entries still gets a section -- with an invite to
-    contribute instead of bullets -- so the full taxonomy is visible up front.
+    contribute instead of bullets -- so the full taxonomy is visible up front. An entry
+    scoped to specific experiments/facilities gets a "(ATLAS · UChicago)" suffix; a
+    generic entry (usable by anyone, tied to nothing specific) gets no suffix at all.
     """
     by_category = [(category, _entries_by_category(entries, category)) for category in categories]
 
@@ -55,7 +76,10 @@ def render_readme_block(entries: list[Entry], categories: list[Category]) -> str
     sections = []
     for category, matches in by_category:
         body = (
-            "\n".join(f"- [{entry.name}]({entry.url}) - {entry.description}" for entry in matches)
+            "\n".join(
+                f"- [{entry.name}]({entry.url}) - {entry.description}{_readme_scope_suffix(entry)}"
+                for entry in matches
+            )
             if matches
             else _EMPTY_CATEGORY_INVITE
         )
@@ -70,10 +94,17 @@ def _anchor(title: str) -> str:
     return "".join(ch for ch in slug if ch.isalnum() or ch == "-")
 
 
+def _llms_txt_scope(entry: Entry) -> str:
+    """"generic", or a comma-separated "ATLAS, UChicago" list of scope tags."""
+    tags = _scope_tags(entry)
+    return ", ".join(tags) if tags else "generic"
+
+
 def render_llms_txt(entries: list[Entry]) -> str:
     """Render llms.txt: a flat, agent-readable index of every entry with its card path."""
     lines = [
-        f"{entry.name} | {entry.url} | {entry.description} | entries/{entry.slug}.md"
+        f"{entry.name} | {entry.url} | {entry.description} | {_llms_txt_scope(entry)} | "
+        f"entries/{entry.slug}.md"
         for entry in sorted(entries, key=lambda entry: entry.name.casefold())
     ]
     return _LLMS_TXT_HEADER + "\n" + "\n".join(lines) + "\n"
@@ -92,7 +123,9 @@ def rewrite_readme(original: str, block: str) -> str:
 
 def _load() -> tuple[list[Entry], list[Category]]:
     categories = load_categories(CATEGORIES_YAML)
-    entries = load_entries(ENTRIES_DIR, categories)
+    experiments = load_experiments(EXPERIMENTS_YAML)
+    facilities = load_facilities(FACILITIES_YAML)
+    entries = load_entries(ENTRIES_DIR, categories, experiments, facilities)
     return entries, categories
 
 

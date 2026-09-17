@@ -29,6 +29,7 @@ ENTRIES = [
         url="https://github.com/kratsg/ami-mcp",
         description="MCP server exposing ATLAS AMI metadata to agents",
         categories=["mcp-servers"],
+        experiments=["ATLAS"],
         slug="ami-mcp",
         body="Body for AMI MCP.",
     ),
@@ -39,6 +40,27 @@ ENTRIES = [
         categories=["agent-frameworks", "mcp-servers"],
         slug="jfc",
         body="Body for JFC.",
+    ),
+    Entry(
+        name="AF Filesystem MCP",
+        url="https://github.com/maniaclab/af-filesystem-mcp",
+        description="MCP server for a user's own analysis-facility files",
+        categories=["mcp-servers"],
+        experiments=["ATLAS"],
+        facilities=["UChicago"],
+        slug="af-filesystem-mcp",
+        body="Body for AF Filesystem MCP.",
+    ),
+    Entry(
+        name="UChicago AF MCP Portal",
+        url="https://mcp-portal.af.uchicago.edu/",
+        description="Live UChicago AF MCP portal, connect directly",
+        categories=["mcp-servers"],
+        experiments=["ATLAS"],
+        facilities=["UChicago"],
+        hosted=True,
+        slug="uchicago-af-mcp-portal",
+        body="Body for UChicago AF MCP Portal.",
     ),
 ]
 
@@ -84,6 +106,54 @@ def test_render_llms_txt_lists_every_entry_with_card_path():
     assert "entries/ami-mcp.md" in text
     assert "entries/jfc.md" in text
     assert "https://github.com/kratsg/rucio-mcp" in text
+
+
+def test_render_readme_block_shows_no_scope_suffix_for_generic_entry():
+    block = render_readme_block(ENTRIES, CATEGORIES)
+    rucio_line = next(line for line in block.splitlines() if "Rucio MCP" in line)
+    assert not rucio_line.rstrip().endswith(")")
+
+
+def test_render_readme_block_shows_experiment_tag():
+    block = render_readme_block(ENTRIES, CATEGORIES)
+    ami_line = next(line for line in block.splitlines() if "AMI MCP" in line)
+    assert "(ATLAS)" in ami_line
+
+
+def test_render_readme_block_shows_experiment_and_facility_tags():
+    block = render_readme_block(ENTRIES, CATEGORIES)
+    af_line = next(line for line in block.splitlines() if "AF Filesystem MCP" in line)
+    assert "(ATLAS · UChicago)" in af_line
+
+
+def test_render_llms_txt_marks_generic_entries_explicitly():
+    text = render_llms_txt(ENTRIES)
+    rucio_line = next(line for line in text.splitlines() if "Rucio MCP" in line)
+    assert "| generic |" in rucio_line
+
+
+def test_render_llms_txt_lists_scope_tags():
+    text = render_llms_txt(ENTRIES)
+    af_line = next(line for line in text.splitlines() if "AF Filesystem MCP" in line)
+    assert "| ATLAS, UChicago |" in af_line
+
+
+def test_render_readme_block_marks_hosted_entries():
+    block = render_readme_block(ENTRIES, CATEGORIES)
+    portal_line = next(line for line in block.splitlines() if "UChicago AF MCP Portal" in line)
+    assert "(hosted · ATLAS · UChicago)" in portal_line
+
+
+def test_render_readme_block_does_not_mark_non_hosted_entries():
+    block = render_readme_block(ENTRIES, CATEGORIES)
+    af_line = next(line for line in block.splitlines() if "AF Filesystem MCP" in line and "Portal" not in line)
+    assert "hosted" not in af_line
+
+
+def test_render_llms_txt_marks_hosted_entries():
+    text = render_llms_txt(ENTRIES)
+    portal_line = next(line for line in text.splitlines() if "UChicago AF MCP Portal" in line)
+    assert "| hosted, ATLAS, UChicago |" in portal_line
 
 
 def test_rewrite_readme_replaces_only_between_markers():

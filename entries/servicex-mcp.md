@@ -4,6 +4,7 @@ url: https://github.com/maniaclab/servicex-mcp
 description:
   MCP server wrapping the ServiceX client for on-demand ATLAS/CMS data delivery
 categories: [mcp-servers]
+experiments: [ATLAS, CMS]
 ---
 
 Wraps the `servicex` Python client as MCP tools for

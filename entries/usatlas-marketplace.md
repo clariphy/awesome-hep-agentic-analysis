@@ -5,6 +5,8 @@ description:
   Claude Code plugin marketplace covering ATLAS analysis facilities and the full
   ATLAS software stack
 categories: [marketplaces]
+experiments: [ATLAS]
+facilities: [BNL, UChicago]
 ---
 
 A Claude Code plugin marketplace for ATLAS physics analysis, with four plugins:
@@ -16,6 +18,10 @@ cabinetry, TRExFitter, coffea, awkward, uproot, and ATLAS software setup), and
 `hep-python-tools` (generic HEP Python tooling). Generated from per-skill/agent
 datacards via its own `pixi run sync-skills` — the same pattern this repo's
 generator follows.
+
+The BNL/UChicago tags cover only `af-bnl`/`af-uchicago`: those two plugins are
+useless without an account at that specific facility. `atlas` and
+`hep-python-tools` work for any ATLAS member anywhere, install and all.
 
 Useful when: you use Claude Code for ATLAS analysis and want skills/agents for a
 specific US ATLAS analysis facility, or for the ATLAS statistics and
