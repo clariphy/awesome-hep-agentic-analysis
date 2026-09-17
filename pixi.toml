@@ -1,0 +1,28 @@
+[workspace]
+authors = ["Giordon Stark <kratsg@gmail.com>"]
+channels = ["conda-forge"]
+name = "awesome-hep-agentic-analysis"
+platforms = ["linux-64", "linux-aarch64", "osx-64", "osx-arm64", "win-64"]
+version = "0.1.0"
+
+[tasks]
+generate = { cmd = "python -m scripts.generate", description = "Regenerate the README block and llms.txt from entries/" }
+check-generated = { cmd = "python -m scripts.generate --check", description = "CI: fail if README/llms.txt are out of date with entries/" }
+validate = { cmd = "python -m scripts.validate", description = "Validate every entries/*.md against the Entry schema" }
+links = { cmd = "lychee --config lychee.toml .", description = "Check all links in the repo for reachability" }
+lint = { cmd = "prek run --all-files", description = "Run prek hooks on all files" }
+test = { cmd = "pytest", description = "Run the test suite" }
+check = { depends-on = ["validate", "check-generated", "lint", "test"], description = "CI: validate entries, verify generated files are current, lint, and test" }
+contributors-add = { cmd = "npx --no-install all-contributors-cli add", depends-on = ["npm-install"], description = "Add a contributor: pixi run contributors-add <username> <contribution-types>" }
+contributors-generate = { cmd = "npx --no-install all-contributors-cli generate", depends-on = ["npm-install"], description = "Regenerate the README's contributors table from .all-contributorsrc" }
+contributors-check = { cmd = "npx --no-install all-contributors-cli check", depends-on = ["npm-install"], description = "Compare git history against .all-contributorsrc for uncredited contributors" }
+npm-install = { cmd = "npm install --no-fund --no-audit", inputs = ["package.json"], outputs = ["node_modules/.package-lock.json"], description = "Install the all-contributors-cli npm dependency" }
+
+[dependencies]
+python = ">=3.11"
+pydantic = ">=2"
+pyyaml = ">=6"
+prek = ">=0.5.3"
+lychee = ">=0.24.2"
+pytest = ">=8"
+nodejs = ">=22"

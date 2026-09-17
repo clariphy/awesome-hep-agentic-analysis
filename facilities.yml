@@ -1,0 +1,6 @@
+# Canonical facility names, so entries/*.md stays consistent (e.g. "UChicago", not
+# "uchicago" or "U Chicago"). Referenced by the `facilities` frontmatter field. Add a
+# name here in the same PR as the first entry that needs it.
+facilities:
+  - name: UChicago
+  - name: BNL

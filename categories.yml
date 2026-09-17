@@ -1,0 +1,57 @@
+# Ordered taxonomy for entries/*.md. Order here is the order sections appear in the
+# generated README. A category with zero entries still gets a section, with an invite
+# to contribute, so the full taxonomy is visible before there's anything to put in it.
+categories:
+  - id: agent-frameworks
+    title: Agent Frameworks & Orchestration
+    blurb: >-
+      Frameworks that coordinate one or more LLM agents through a HEP analysis
+      workflow, end to end or in part.
+
+  - id: marketplaces
+    title: Plugin Marketplaces
+    blurb: >-
+      Collections of Claude Code (or equivalent) plugins, skills, and agents,
+      published as an installable marketplace.
+
+  - id: mcp-servers
+    title: MCP Servers
+    blurb: >-
+      Model Context Protocol servers that expose HEP data, compute, or software
+      infrastructure to any MCP-compatible agent.
+
+  - id: skills-plugins
+    title: Standalone Skills & Plugins
+    blurb: >-
+      Individual agent skills or plugins not bundled into one of the
+      marketplaces above.
+
+  - id: knowledge-rag
+    title: Knowledge Assistants & RAG
+    blurb: >-
+      Retrieval-augmented systems and knowledge assistants built for HEP
+      documentation, software, or support workflows.
+
+  - id: foundation-models
+    title: Foundation Models for HEP
+    blurb: >-
+      Pretrained models built specifically for particle, nuclear, or
+      astroparticle physics data.
+
+  - id: benchmarks
+    title: Benchmarks & Evaluations
+    blurb: >-
+      Benchmarks and evaluation suites for measuring agent or model performance
+      on HEP tasks.
+
+  - id: datasets
+    title: Datasets & Open Data for AI
+    blurb: >-
+      Datasets and open-data releases curated or packaged for AI/agentic use in
+      HEP.
+
+  - id: community
+    title: Community, Papers & Talks
+    blurb: >-
+      Workshops, whitepapers, and community efforts that shaped or motivated
+      this list.

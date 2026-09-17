@@ -1,0 +1,39 @@
+ci:
+  autoupdate_commit_msg: "chore: [pre-commit.ci] pre-commit autoupdate"
+  autoupdate_schedule: monthly
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # frozen: v6.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-json
+      - id: check-yaml
+      - id: check-toml
+      - id: debug-statements
+      - id: end-of-file-fixer
+        # exclude generated files
+        exclude: ^README\.md$|^llms\.txt$
+      - id: mixed-line-ending
+      - id: name-tests-test
+        args: ["--pytest-test-first"]
+      - id: trailing-whitespace
+        exclude: ^README\.md$|^llms\.txt$
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: 57b21406f092110c18776e39b0bda50d37c945c8 # frozen: v2.4.3
+    hooks:
+      - id: codespell
+        files: ^.*\.(py|md)$
+
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: "0ee178619d696787ca73d210cc191d720868c631" # frozen: v3.9.6
+    hooks:
+      - id: prettier
+        types_or: [yaml, markdown, json]
+        args: [--prose-wrap=always]
+        # generated files are rewritten by scripts/generate.py, not prettier
+        exclude: ^README\.md$|^llms\.txt$

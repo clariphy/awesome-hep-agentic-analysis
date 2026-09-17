@@ -1,0 +1,8 @@
+{
+  "name": "awesome-hep-agentic-analysis",
+  "private": true,
+  "description": "Tooling-only package.json: pins all-contributors-cli for the contributors table in README.md.",
+  "devDependencies": {
+    "all-contributors-cli": "6.26.1"
+  }
+}
