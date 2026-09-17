@@ -18,8 +18,7 @@ Useful when: you are locating datasets on whichever Rucio instance this is
 configured against, checking replication, or inspecting rules before launching a
 job.
 
-Not useful when: you need Rucio _administration_ (creating rules, managing
-accounts) — this covers client-side, read-mostly operations. Also not useful if
-you just want to _connect_ to a running instance rather than deploy your own —
-see [Rucio MCP (UChicago-hosted)](https://rucio-mcp.af.uchicago.edu/) for one
-that already exists.
+Not useful when: you just want to _connect_ to a running instance rather than
+deploy your own — see
+[Rucio MCP (UChicago-hosted)](https://rucio-mcp.af.uchicago.edu/) for one that
+already exists.

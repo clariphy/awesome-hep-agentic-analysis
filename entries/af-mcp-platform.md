@@ -8,15 +8,14 @@ categories: [mcp-servers]
 
 The source code for a Model Context Protocol gateway that any ATLAS analysis
 facility can deploy. It authenticates callers against the facility's Keycloak,
-brokers per-user credentials to downstream systems, and aggregates _any_
+brokers per-user credentials to downstream systems, and aggregates any
 registered MCP backend behind one endpoint, so an LLM client never holds raw
 x509/IAM credentials directly. Rucio, PanDA, AMI, GitLab, Jupyter, and HTCondor
-are what UChicago's deployment currently registers — not a fixed list the
-platform itself is limited to; any MCP server can be hooked in. Untagged
-(generic) because this card is about the deployable software, not a specific
-running instance — see
-[UChicago AF MCP Portal](https://mcp-portal.af.uchicago.edu/) for the one live
-deployment today (BNL is evaluating a second, for SDCC).
+are examples of backends that can be registered, not a fixed list the platform
+itself is limited to. Untagged (generic) because this card is about the
+deployable software, not a specific running instance — see
+[UChicago AF MCP Portal](https://mcp-portal.af.uchicago.edu/) for one such
+deployment.
 
 Useful when: you or your facility want to stand up your own credential-brokered
 MCP gateway.

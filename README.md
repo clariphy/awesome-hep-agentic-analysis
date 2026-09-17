@@ -79,7 +79,7 @@ Collections of Claude Code (or equivalent) plugins, skills, and agents, publishe
 Model Context Protocol servers that expose HEP data, compute, or software infrastructure to any MCP-compatible agent.
 
 - [AF Filesystem MCP](https://github.com/maniaclab/af-filesystem-mcp) - MCP server giving browse and read access to a user's own analysis-facility home and data directories (ATLAS · UChicago)
-- [AF JupyterLab MCP](https://github.com/maniaclab/af-jupyterlab-mcp) - MCP server for creating, inspecting, and deleting per-user JupyterLab servers on an analysis facility (ATLAS · UChicago)
+- [AF JupyterLab MCP](https://github.com/maniaclab/af-jupyterlab-mcp) - MCP server for managing per-user JupyterLab servers and notebooks on an analysis facility (ATLAS · UChicago)
 - [AF MCP Platform](https://github.com/maniaclab/af-mcp-platform) - Credential-brokered MCP aggregator/gateway for any MCP server to hook into
 - [AMI MCP](https://github.com/kratsg/ami-mcp) - MCP server wrapping ATLAS AMI for dataset metadata lookups (ATLAS)
 - [ATLAS OpenSearch MCP](https://gitlab.cern.ch/atlas-search/mcp) - MCP server for querying the ATLAS collaboration's OpenSearch-backed search index (ATLAS)
