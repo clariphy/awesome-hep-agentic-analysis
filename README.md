@@ -4,7 +4,7 @@ A curated collection of agentic analysis toolings for the HEP community, compati
 Claude Code, Codex, Gemini CLI, Cursor, and more.
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Background
@@ -147,6 +147,7 @@ every kind of contribution counts, not just entries. See
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://giordonstark.com/"><img src="https://avatars.githubusercontent.com/u/761483?v=4?s=100" width="100px;" alt="Giordon Stark"/><br /><sub><b>Giordon Stark</b></sub></a><br /><a href="https://github.com/clariphy/awesome-hep-agentic-analysis/commits?author=kratsg" title="Code">💻</a> <a href="https://github.com/clariphy/awesome-hep-agentic-analysis/commits?author=kratsg" title="Documentation">📖</a> <a href="#ideas-kratsg" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-kratsg" title="Project Management">📆</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/pfackeldey"><img src="https://avatars.githubusercontent.com/u/18463582?v=4?s=100" width="100px;" alt="Peter Fackeldey"/><br /><sub><b>Peter Fackeldey</b></sub></a><br /><a href="#tool-pfackeldey" title="Tools">🔧</a></td>
     </tr>
   </tbody>
   <tfoot>
