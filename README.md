@@ -94,7 +94,7 @@ Model Context Protocol servers that expose HEP data, compute, or software infras
 
 Individual agent skills or plugins not bundled into one of the marketplaces above.
 
-_No entries yet. [Contributions welcome!](CONTRIBUTING.md)_
+- [auto-opt](https://github.com/pfackeldey/auto-opt) - SKILL template for automatic iterative (python) code optimization
 
 ### Knowledge Assistants & RAG
 

@@ -14,6 +14,7 @@ AF MCP Platform | https://github.com/maniaclab/af-mcp-platform | Credential-brok
 AMI MCP | https://github.com/kratsg/ami-mcp | MCP server wrapping ATLAS AMI for dataset metadata lookups | ATLAS | entries/ami-mcp.md
 archi | https://github.com/archi-physics/archi | Retrieval-augmented chat, ticketing, and course-support assistant framework for research teams | generic | entries/archi.md
 ATLAS OpenSearch MCP | https://gitlab.cern.ch/atlas-search/mcp | MCP server for federated search across ATLAS's collaboration documentation | ATLAS | entries/atlas-opensearch-mcp.md
+auto-opt | https://github.com/pfackeldey/auto-opt | SKILL template for automatic iterative (python) code optimization | generic | entries/auto-opt.md
 Bamboo MCP | https://github.com/BNLNPPS/bamboo-mcp | Plugin-based MCP runtime for AI-assisted PanDA/ATLAS, ePIC/EIC, and CGSim workflows | ATLAS, EIC | entries/bamboo-mcp.md
 Building an AI-native Research Ecosystem for Experimental Particle Physics | https://arxiv.org/abs/2602.17582 | 459-author community whitepaper laying out grand challenges and infrastructure for AI-native particle physics | generic | entries/ai-native-hep-whitepaper.md
 CLARIPHY AI Collaboration Meeting | https://indico.global/event/18639/ | Workshop that formed the working group producing this list, including the Agentic Workflows session | generic | entries/clariphy-workshop.md
