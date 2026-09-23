@@ -27,7 +27,10 @@ An entry must be:
 
 - **HEP-specific.** Built for, or specifically adapted to, particle/nuclear/astroparticle
   physics analysis. Generic ML libraries, agent frameworks, or MCP tooling with no HEP
-  angle belong in a general-purpose awesome list, not this one.
+  angle belong in a general-purpose awesome list, not this one — with the deliberate
+  exception of the [Related Resources](#related-resources) section, reserved for a small
+  number of generic resources that are directly useful when doing HEP agentic analysis
+  work even though they aren't built for physics themselves.
 - **First-hand.** Every entry is here because the person who added it uses it or
   maintains it. See [CONTRIBUTING.md](CONTRIBUTING.md).
 - **Actually usable today**, not a proposal or a roadmap item — with the deliberate
@@ -60,6 +63,7 @@ match by reading the datacard before recommending anything.
 - [Benchmarks & Evaluations](#benchmarks--evaluations)
 - [Datasets & Open Data for AI](#datasets--open-data-for-ai)
 - [Community, Papers & Talks](#community-papers--talks)
+- [Related Resources](#related-resources)
 
 ### Agent Frameworks & Orchestration
 
@@ -126,6 +130,12 @@ Workshops, whitepapers, and community efforts that shaped or motivated this list
 
 - [Building an AI-native Research Ecosystem for Experimental Particle Physics](https://arxiv.org/abs/2602.17582) - 459-author community whitepaper laying out grand challenges and infrastructure for AI-native particle physics
 - [CLARIPHY AI Collaboration Meeting](https://indico.global/event/18639/) - Workshop that formed the working group producing this list, including the Agentic Workflows session
+
+### Related Resources
+
+Generic, non-HEP-specific resources that are directly useful when doing HEP agentic analysis work, even though they aren't built for physics themselves.
+
+- [best-of-Agent-Harnesses](https://github.com/RyanAlberts/best-of-Agent-Harnesses) - Curated, ranked list of 100+ AI agent harnesses, rescored weekly
 <!-- UPDATE:END -->
 
 ## Contributing
