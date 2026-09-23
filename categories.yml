@@ -55,3 +55,10 @@ categories:
     blurb: >-
       Workshops, whitepapers, and community efforts that shaped or motivated
       this list.
+
+  - id: related-resources
+    title: Related Resources
+    blurb: >-
+      Generic, non-HEP-specific resources that are directly useful when doing
+      HEP agentic analysis work, even though they aren't built for physics
+      themselves.
